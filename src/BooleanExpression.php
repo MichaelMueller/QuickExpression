@@ -19,5 +19,7 @@ abstract class BooleanExpression extends Expression
 
     if ( !$eval )
       $FailedExpressions[] = $this;
+    
+    return $eval;
   }
 }

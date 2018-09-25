@@ -11,9 +11,11 @@
   ],
   "require": {
     "php": ">=5.6",
-    "michaelmueller/quickinterfaces": "dev-master",
-    "michaelmueller/quicktestapp": "dev-master"
+    "michaelmueller/quickinterfaces": "dev-master"
   },
+  "require-dev": {
+    "michaelmueller/quicktestapp": "dev-master"
+  },      
   "autoload": {
     "psr-4": {
       "Qck\\Expression\\": "src"
