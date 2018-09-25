@@ -1,0 +1,24 @@
+{
+  "name": "michaelmueller/quickexpression",
+  "type": "library",
+  "description": "A Quick Expression library.",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Michael Mueller",
+      "email": "michaelmuelleronline@gmx.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "michaelmueller/quickinterfaces": "dev-master",
+    "michaelmueller/quicktestapp": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Qck\\Expression\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
