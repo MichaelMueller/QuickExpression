@@ -109,4 +109,10 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
   {
     return $this->ne( $this->var_( $varName ), $this->val( $Value ) );
   }
+
+  public function varEqVar( $varName, $var2Name )
+  {
+    return $this->eq( $this->var_( $varName ), $this->var_( $var2Name ) );
+    
+  }
 }
