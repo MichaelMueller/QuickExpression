@@ -24,4 +24,9 @@ class Strlen extends SingleParamFunction
   {
     return mb_strlen( $Value );
   }
+
+  function __toString()
+  {
+    return "strlen ( " . $this->Param->__toString() . " )";
+  }
 }

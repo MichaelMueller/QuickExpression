@@ -26,6 +26,11 @@ class Not extends BooleanExpression
     return "not " . $this->BooleanExpression->toSql( $Dictionary, $Params );
   }
 
+  function __toString()
+  {
+    return "not ".$this->BooleanExpression->__toString();
+  }
+  
   /**
    *
    * @var BooleanExpression 

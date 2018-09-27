@@ -19,4 +19,9 @@ class True_ extends BooleanExpression
   {
     return $Dictionary->getTrueLiteral();
   }
+  
+  function __toString()
+  {
+    return "true";
+  }
 }

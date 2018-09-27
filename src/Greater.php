@@ -24,4 +24,8 @@ class Greater extends Comparison
   {
     return ">";
   }
+  public function getOperatorString()
+  {
+    return ">";
+  }
 }

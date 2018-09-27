@@ -27,4 +27,9 @@ class Equals extends Comparison
   {
     return "=";
   }
+  public function getOperatorString()
+  {
+    return "==";
+  }
+  
 }

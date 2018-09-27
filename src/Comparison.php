@@ -11,6 +11,8 @@ use Qck\Expression\Interfaces\ValueExpression;
 abstract class Comparison extends BooleanExpression implements Interfaces\Comparison
 {
 
+  abstract function getOperatorString();
+
   abstract function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary );
 
   function __construct( ValueExpression $Left = null, ValueExpression $Right = null )
@@ -33,6 +35,11 @@ abstract class Comparison extends BooleanExpression implements Interfaces\Compar
                          array &$Params = array () )
   {
     return $this->Left->toSql( $SqlDbDialect, $Params ) . " " . $this->getOperator( $SqlDbDialect ) . " " . $this->Right->toSql( $SqlDbDialect, $Params );
+  }
+
+  function __toString()
+  {
+    return $this->Left->__toString() . " " . $this->getOperatorString() . " " . $this->Right->__toString();
   }
 
   /**

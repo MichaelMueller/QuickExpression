@@ -25,4 +25,8 @@ class LessEquals extends Comparison
   {
     return "<=";
   }
+  public function getOperatorString()
+  {
+    return "<=";
+  }
 }

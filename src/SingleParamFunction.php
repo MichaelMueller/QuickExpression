@@ -26,6 +26,7 @@ abstract class SingleParamFunction implements Interfaces\SingleParamFunction
     return $this->runFunction( $this->Param->getValue( $Data, $FilteredData ));
   }
 
+  
   /**
    *
    * @var Interfaces\ValueExpression

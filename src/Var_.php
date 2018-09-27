@@ -34,6 +34,11 @@ class Var_ implements Interfaces\Var_
     return $Value;
   }
 
+  function __toString()
+  {
+    return $this->Name;
+  }
+
   /**
    *
    * @var string

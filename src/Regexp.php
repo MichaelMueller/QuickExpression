@@ -24,4 +24,9 @@ class Regexp extends Comparison
   {
     return preg_match( $this->Left->getValue( $Data, $FilteredArray ), $this->Right->getValue( $Data, $FilteredArray ) ) == true;
   }
+  
+  public function getOperatorString()
+  {
+    return "regexp";
+  }
 }

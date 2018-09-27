@@ -32,6 +32,11 @@ class And_ extends BooleanChain
     return $Dictionary->getAndOperator();
   }
 
+  public function getOperatorString()
+  {
+    return "and";
+  }
+
   protected $EvaluateAll;
 
 }

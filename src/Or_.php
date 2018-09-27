@@ -33,4 +33,9 @@ class Or_ extends BooleanChain
   {
     return "or";
   }
+
+  public function getOperatorString()
+  {
+    return "or";
+  }
 }
