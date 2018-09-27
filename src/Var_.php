@@ -6,19 +6,13 @@ namespace Qck\Expression;
  *
  * @author muellerm
  */
-class Var_ extends ValueExpression implements Interfaces\Var_
+class Var_ implements Interfaces\Var_
 {
 
-  function __construct( $Name, array $Data, $FilterOut = false )
+  function __construct( $Name, $FilterOut = false )
   {
     $this->Name = $Name;
-    $this->Data = $Data;
     $this->FilterOut = $FilterOut;
-  }
-
-  function filterOut()
-  {
-    return $this->FilterOut;
   }
 
   function getName()
@@ -32,9 +26,12 @@ class Var_ extends ValueExpression implements Interfaces\Var_
     return $this->Name;
   }
 
-  public function getValue()
+  function getValue( array $Data = [], array &$FilteredData = [] )
   {
-    return isset( $this->Data[ $this->Name ] ) ? $this->Data[ $this->Name ] : null;
+    $Value = isset( $Data[ $this->Name ] ) ? $Data[ $this->Name ] : null;
+    if ( $this->FilterOut == false )
+      $FilteredData[ $this->Name ] = $Value;
+    return $Value;
   }
 
   /**
@@ -42,12 +39,6 @@ class Var_ extends ValueExpression implements Interfaces\Var_
    * @var string
    */
   protected $Name;
-
-  /**
-   *
-   * @var array
-   */
-  protected $Data;
 
   /**
    *

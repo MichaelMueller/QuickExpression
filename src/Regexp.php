@@ -20,9 +20,8 @@ class Regexp extends Comparison
     return $Dictionary->getRegExpOperator();
   }
 
-  public function evaluateProxy( array $Data, &$FilteredArray = array (),
-                                 &$FailedExpressions = array () )
+  public function evaluateProxy( array $Data, &$FilteredArray = array () )
   {
-    return preg_match( $this->Left->evaluate( $Data, $FilteredArray, $FailedExpressions ), $this->Right->evaluate( $Data, $FilteredArray, $FailedExpressions ) ) == true;
+    return preg_match( $this->Left->getValue( $Data, $FilteredArray ), $this->Right->getValue( $Data, $FilteredArray ) ) == true;
   }
 }

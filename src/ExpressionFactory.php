@@ -2,17 +2,15 @@
 
 namespace Qck\Expression;
 
+use Qck\Expression\Interfaces\ValueExpression;
+use Qck\Expression\Interfaces\BooleanExpression;
+
 /**
  *
  * @author muellerm
  */
 class ExpressionFactory implements Interfaces\ExpressionFactory
 {
-
-  function __construct( \Qck\Interfaces\ServiceRepo $ServiceRepo )
-  {
-    $this->ServiceRepo = $ServiceRepo;
-  }
 
   function and_( $EvaluateAll = false )
   {
@@ -24,9 +22,9 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
     return new \Qck\Expression\Strlen( $Param );
   }
 
-  public function var_( $Name, array $Data, $FilterOut = false )
+  public function var_( $Name, $FilterOut = false )
   {
-    return new Var_( $Name, $Data, $FilterOut );
+    return new Var_( $Name, $FilterOut );
   }
 
   function val( $Value )
@@ -68,18 +66,4 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
   {
     return new \Qck\Expression\Or_();
   }
-
-  public function requestVar_( $Name, $FilterOut = false )
-  {
-    /* @var $Request \Qck\App\Interfaces\Request */
-    $Request = $this->ServiceRepo->get( \Qck\App\Interfaces\Request::class );
-    return $this->var_( $Name, $Request->getParams(), $FilterOut );
-  }
-
-  /**
-   *
-   * @var \Qck\Interfaces\ServiceRepo
-   */
-  protected $ServiceRepo;
-
 }

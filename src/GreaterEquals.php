@@ -18,7 +18,7 @@ class GreaterEquals extends Comparison
   public function evaluateProxy( array $Data, &$FilteredArray = [],
                                  &$FailedExpressions = [] )
   {
-    return $this->Left->evaluate( $Data, $FilteredArray, $FailedExpressions ) >= $this->Right->evaluate( $Data, $FilteredArray, $FailedExpressions );
+    return $this->Left->getValue( $Data, $FilteredArray ) >= $this->Right->getValue( $Data, $FilteredArray );
   }
 
   public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )

@@ -9,8 +9,7 @@ namespace Qck\Expression;
 class True_ extends BooleanExpression
 {
 
-  public function evaluateProxy( array $Data, &$FilteredArray = [],
-                                 &$FailedExpressions = [] )
+  public function evaluateProxy( array $Data, &$FilteredArray = [] )
   {
     return true;
   }

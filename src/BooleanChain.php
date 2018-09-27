@@ -11,7 +11,7 @@ abstract class BooleanChain extends BooleanExpression implements Interfaces\Bool
 
   abstract function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary );
 
-  function add( BooleanExpression $Expression )
+  function add( Interfaces\BooleanExpression $Expression )
   {
     $this->Expressions[] = $Expression;
     return $this;

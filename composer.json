@@ -16,7 +16,10 @@
   "autoload": {
     "psr-4": {
       "Qck\\Expression\\": "src"
-    }
+    },
+    "files": [
+      "src/autoload.php"
+    ]
   },
   "minimum-stability": "dev",
   "prefer-stable": true

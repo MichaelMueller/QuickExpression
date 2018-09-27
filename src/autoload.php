@@ -4,9 +4,9 @@
 $ServiceRepo = Qck\ServiceRepo::getInstance();
 
 // ADD SERVICES *************
-$ServiceRepo->addServiceFactory( \Qck\Expression\ExpressionFactory::class, function() use($ServiceRepo)
+$ServiceRepo->addServiceFactory( \Qck\Expression\ExpressionFactory::class, function()
 {
-  return new \Qck\Expression\ExpressionFactory( $ServiceRepo );
+  return new \Qck\Expression\ExpressionFactory();
 } );
 
 $ServiceRepo->addServiceFactory( \Qck\Expression\TestSuite::class, function()

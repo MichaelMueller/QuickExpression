@@ -18,7 +18,7 @@ class Equals extends Comparison
   public function evaluateProxy( array $Data, &$FilteredArray = [],
                                  &$FailedExpressions = [] )
   {
-    $eval = $this->Left->evaluate( $Data, $FilteredArray, $FailedExpressions ) == $this->Right->evaluate( $Data, $FilteredArray, $FailedExpressions );
+    $eval = $this->Left->getValue( $Data, $FilteredArray ) == $this->Right->getValue( $Data, $FilteredArray );
 
     return $eval;
   }

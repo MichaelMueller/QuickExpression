@@ -14,7 +14,7 @@ class Value implements Interfaces\ValueExpression
     $this->Value = $Value;
   }
 
-  function getValue()
+  function getValue( array $Data = [], array &$FilteredData = [] )
   {
     return $this->Value;
   }

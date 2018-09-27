@@ -15,10 +15,9 @@ class Greater extends Comparison
     parent::__construct( $Left, $Right );
   }
 
-  public function evaluateProxy( array $Data, &$FilteredArray = [],
-                                 &$FailedExpressions = [] )
+  public function evaluateProxy( array $Data, &$FilteredArray = [], &$FailedExpressions = array () )
   {
-    return $this->Left->evaluate( $Data, $FilteredArray, $FailedExpressions ) > $this->Right->evaluate( $Data, $FilteredArray, $FailedExpressions );
+    return $this->Left->getValue( $Data, $FilteredArray ) > $this->Right->getValue( $Data, $FilteredArray );
   }
 
   public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
