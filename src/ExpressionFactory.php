@@ -66,4 +66,17 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
   {
     return new \Qck\Expression\Or_();
   }
+
+  public function boolVal( $BoolValue )
+  {
+    return new BooleanValueExpression( $BoolValue );
+  }
+
+  public function choice( Interfaces\ValueExpression $Value, array $Choices )
+  {
+    $Or = $this->or_();
+    foreach ( $Choices as $Choice )
+      $Or->add( $this->eq( $Value, $this->val( $Choice ) ) );
+    return $Or;
+  }
 }

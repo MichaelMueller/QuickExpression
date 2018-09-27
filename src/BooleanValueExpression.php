@@ -6,7 +6,7 @@ namespace Qck\Expression;
  *
  * @author muellerm
  */
-class Value implements Interfaces\ValueExpression
+class BooleanValueExpression extends BooleanExpression
 {
 
   function __construct( $Value )
@@ -14,26 +14,22 @@ class Value implements Interfaces\ValueExpression
     $this->Value = $Value;
   }
 
-  function getValue( array $Data = [], array &$FilteredData = [] )
+  public function evaluateProxy( array $Data, &$FilteredArray = [] )
   {
-    return $this->Value;
+    return boolval( $this->Value );
   }
 
   public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
                          array &$Params = array () )
   {
-    $Params[] = $this->Value;
-    return "?";
+    return boolval( $this->Value ) == true ? $Dictionary->getTrueLiteral() : $Dictionary->getFalseLiteral();
   }
 
   function __toString()
   {
-    return strval($this->Value);
+    return strval( boolval( $this->Value ) );
   }
-  /**
-   *
-   * @var mixed
-   */
+
   protected $Value;
 
 }
