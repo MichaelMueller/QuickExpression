@@ -1,2 +1,2 @@
-# QuickTestApp
-A Quick application for running Testsuites.
+# QuickExpression
+A library for Expressions within the SOA Framework Quick.

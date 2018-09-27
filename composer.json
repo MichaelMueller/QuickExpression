@@ -1,7 +1,7 @@
 {
   "name": "michaelmueller/quickexpression",
   "type": "library",
-  "description": "A Quick Expression library.",
+  "description": "A library for Expressions within the SOA Framework Quick.",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -11,11 +11,8 @@
   ],
   "require": {
     "php": ">=5.6",
-    "michaelmueller/quickinterfaces": "dev-master"
+    "michaelmueller/quick": "dev-master"
   },
-  "require-dev": {
-    "michaelmueller/quicktestapp": "dev-master"
-  },      
   "autoload": {
     "psr-4": {
       "Qck\\Expression\\": "src"
