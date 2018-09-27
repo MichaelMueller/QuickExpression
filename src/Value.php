@@ -6,7 +6,7 @@ namespace Qck\Expression;
  *
  * @author muellerm
  */
-class Value extends ValueExpression
+class Value implements Interfaces\ValueExpression
 {
 
   function __construct( $Value )
@@ -19,12 +19,7 @@ class Value extends ValueExpression
     return $this->Value;
   }
 
-  public function evaluate( array $Data, &$FilteredArray = [], &$FailedExpressions = [] )
-  {
-    return $this->Value;
-  }
-
-  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
+  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     $Params[] = $this->Value;

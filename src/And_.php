@@ -9,14 +9,8 @@ namespace Qck\Expression;
 class And_ extends BooleanChain
 {
 
-  static function create( array $Expressions = [], $EvaluateAll = false )
+  function __construct( $EvaluateAll = false )
   {
-    return new And_( $Expressions, $EvaluateAll );
-  }
-
-  function __construct( array $Expressions = [], $EvaluateAll = false )
-  {
-    parent::__construct( $Expressions );
     $this->EvaluateAll = $EvaluateAll;
   }
 
@@ -33,9 +27,9 @@ class And_ extends BooleanChain
     return $eval;
   }
 
-  public function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary )
+  public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
   {
-    return "and";
+    return $Dictionary->getAndOperator();
   }
 
   protected $EvaluateAll;

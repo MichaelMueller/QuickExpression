@@ -2,60 +2,49 @@
 
 namespace Qck\Expression;
 
+use Qck\Expression\Interfaces\ValueExpression;
+
 /**
  *
  * @author muellerm
  */
-abstract class Comparison extends BooleanExpression
+abstract class Comparison extends BooleanExpression implements Interfaces\Comparison
 {
 
-  abstract function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary );
+  abstract function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary );
 
-  function __construct( ValueExpression $LeftOperand = null,
-                        ValueExpression $RightOperand = null )
+  function __construct( ValueExpression $Left = null, ValueExpression $Right = null )
   {
-    $this->LeftOperand = $LeftOperand;
-    $this->RightOperand = $RightOperand;
+    $this->Left = $Left;
+    $this->Right = $Right;
   }
 
-  function setLeft( ValueExpression $LeftOperand )
+  function getLeft()
   {
-    $this->LeftOperand = $LeftOperand;
-    return $this;
+    return $this->Left;
   }
 
-  function setRight( ValueExpression $RightOperand )
+  function getRight()
   {
-    $this->RightOperand = $RightOperand;
-    return $this;
+    return $this->Right;
   }
 
-  function getLeftOperand()
-  {
-    return $this->LeftOperand;
-  }
-
-  function getRightOperand()
-  {
-    return $this->RightOperand;
-  }
-
-  public function toSql( \Qck\Interfaces\Sql\DbDialect $SqlDbDialect,
+  public function toSql( \Qck\Sql\Interfaces\DbDialect $SqlDbDialect,
                          array &$Params = array () )
   {
-    return $this->LeftOperand->toSql( $SqlDbDialect, $Params ) . " " . $this->getOperator( $SqlDbDialect ) . " " . $this->RightOperand->toSql( $SqlDbDialect, $Params );
+    return $this->Left->toSql( $SqlDbDialect, $Params ) . " " . $this->getOperator( $SqlDbDialect ) . " " . $this->Right->toSql( $SqlDbDialect, $Params );
   }
 
   /**
    *
    * @var ValueExpression
    */
-  protected $LeftOperand;
+  protected $Left;
 
   /**
    *
    * @var ValueExpression 
    */
-  protected $RightOperand;
+  protected $Right;
 
 }

@@ -2,8 +2,9 @@
 
 namespace Qck\Expression\Tests;
 
-class DbDialect implements \Qck\Interfaces\Sql\DbDialect
+class DbDialect implements \Qck\Sql\Interfaces\DbDialect
 {
+
   public function getAutoincrementAttribute()
   {
     return "auto increment";
@@ -27,24 +28,21 @@ class DbDialect implements \Qck\Interfaces\Sql\DbDialect
   public function getIntDatatype()
   {
     return "int";
-    
   }
 
   public function getPrimaryKeyAttribute()
   {
     return "primary key";
-    
   }
 
   public function getRegExpOperator()
   {
     return "regexp";
-    
   }
 
   public function getStringDatatype( $MinLength = 0, $MaxLength = 255, $Blob = false )
   {
-    return "string(".$MinLength.", ".$MaxLength.", ".$Blob.")";    
+    return "string(" . $MinLength . ", " . $MaxLength . ", " . $Blob . ")";
   }
 
   public function getStrlenFunctionName()
@@ -55,6 +53,15 @@ class DbDialect implements \Qck\Interfaces\Sql\DbDialect
   public function getTrueLiteral()
   {
     return "1";
-    
+  }
+
+  public function getAndOperator()
+  {
+    return "and";
+  }
+
+  public function getOrOperator()
+  {
+    return "or";
   }
 }

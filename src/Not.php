@@ -14,12 +14,13 @@ class Not extends BooleanExpression
     $this->BooleanExpression = $BooleanExpression;
   }
 
-  public function evaluateProxy( array $Data, &$FilteredArray = [], &$FailedExpressions = [] )
+  public function evaluateProxy( array $Data, &$FilteredArray = [],
+                                 &$FailedExpressions = [] )
   {
     return !$this->BooleanExpression->evaluate( $Data, $FilteredArray, $FailedExpressions );
   }
 
-  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
+  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     return "not " . $this->BooleanExpression->toSql( $Dictionary, $Params );

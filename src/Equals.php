@@ -9,24 +9,21 @@ namespace Qck\Expression;
 class Equals extends Comparison
 {
 
-  static function create(ValueExpression $LeftOperand=null, ValueExpression $RightOperand=null)
+  function __construct( Interfaces\ValueExpression $Left,
+                        Interfaces\ValueExpression $Right )
   {
-    return new Equals($LeftOperand, $RightOperand);
-  }
-  
-  function __construct( ValueExpression $LeftOperand=null, ValueExpression $RightOperand=null )
-  {
-    parent::__construct( $LeftOperand, $RightOperand );
+    parent::__construct( $Left, $Right );
   }
 
-  public function evaluateProxy( array $Data, &$FilteredArray = [], &$FailedExpressions = [] )
+  public function evaluateProxy( array $Data, &$FilteredArray = [],
+                                 &$FailedExpressions = [] )
   {
-    $eval = $this->LeftOperand->evaluate( $Data, $FilteredArray, $FailedExpressions ) == $this->RightOperand->evaluate( $Data, $FilteredArray, $FailedExpressions );
+    $eval = $this->Left->evaluate( $Data, $FilteredArray, $FailedExpressions ) == $this->Right->evaluate( $Data, $FilteredArray, $FailedExpressions );
 
     return $eval;
   }
 
-  public function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary )
+  public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
   {
     return "=";
   }

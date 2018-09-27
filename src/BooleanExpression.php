@@ -6,7 +6,7 @@ namespace Qck\Expression;
  *
  * @author muellerm
  */
-abstract class BooleanExpression extends Expression
+abstract class BooleanExpression implements Interfaces\BooleanExpression
 {
 
   abstract function evaluateProxy( array $Data, &$FilteredArray = array (),
@@ -19,7 +19,25 @@ abstract class BooleanExpression extends Expression
 
     if ( !$eval )
       $FailedExpressions[] = $this;
-    
+
     return $eval;
+  }
+
+  function filterVar( array $Data, &$FailedExpressions = [] )
+  {
+    $FilteredArray = [];
+    $IsValid = $this->evaluate( $Data, $FilteredArray, $FailedExpressions );
+    return $IsValid ? $FilteredArray : false;
+  }
+
+  function filterRequest( \Qck\App\Interfaces\Request $Request, &$FailedExpressions = [] )
+  {
+    return $this->filterVar( $Request->getParams(), $FailedExpressions );
+  }
+
+  function evaluateRequest( \Qck\App\Interfaces\Request $Request,
+                            &$FilteredArray = array (), &$FailedExpressions = array () )
+  {
+    return $this->evaluate( $Request->getParams(), $FilteredArray, $FailedExpressions );
   }
 }

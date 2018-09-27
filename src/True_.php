@@ -15,7 +15,7 @@ class True_ extends BooleanExpression
     return true;
   }
 
-  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
+  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     return $Dictionary->getTrueLiteral();

@@ -6,16 +6,10 @@ namespace Qck\Expression;
  *
  * @author muellerm
  */
-abstract class BooleanChain extends BooleanExpression
+abstract class BooleanChain extends BooleanExpression implements Interfaces\BooleanChain
 {
 
-  abstract function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary );
-
-  function __construct( array $Expressions = [] )
-  {
-    foreach ( $Expressions as $Expression )
-      $this->add( $Expression );
-  }
+  abstract function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary );
 
   function add( BooleanExpression $Expression )
   {
@@ -23,7 +17,7 @@ abstract class BooleanChain extends BooleanExpression
     return $this;
   }
 
-  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
+  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     $Sql = "(";

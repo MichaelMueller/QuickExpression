@@ -9,12 +9,12 @@ namespace Qck\Expression;
 class Strlen extends SingleParamFunction
 {
 
-  static function create( ValueExpression $Param=null )
+  static function create( ValueExpression $Param = null )
   {
-    return new Strlen( $Param=null );
+    return new Strlen( $Param = null );
   }
 
-  function __construct( ValueExpression $Param=null )
+  function __construct( ValueExpression $Param = null )
   {
     parent::__construct( $Param );
   }
@@ -24,7 +24,7 @@ class Strlen extends SingleParamFunction
     return mb_strlen( $this->Param->evaluate( $Data, $FilteredArray, $FailedExpressions ) );
   }
 
-  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
+  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     return $Dictionary->getStrlenFunctionName() . " ( " . $this->Param->toSql( $Dictionary, $Params ) . " ) ";
