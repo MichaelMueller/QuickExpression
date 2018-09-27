@@ -79,4 +79,34 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
       $Or->add( $this->eq( $Value, $this->val( $Choice ) ) );
     return $Or;
   }
+
+  public function varEq( $varName, $Value )
+  {
+    return $this->eq( $this->var_( $varName ), $this->val( $Value ) );
+  }
+
+  public function varGreater( $varName, $Value )
+  {
+    return $this->gt( $this->var_( $varName ), $this->val( $Value ) );
+  }
+
+  public function varGt( $varName, $Value )
+  {
+    return $this->ge( $this->var_( $varName ), $this->val( $Value ) );
+  }
+
+  public function varLe( $varName, $Value )
+  {
+    return $this->le( $this->var_( $varName ), $this->val( $Value ) );
+  }
+
+  public function varLt( $varName, $Value )
+  {
+    return $this->lt( $this->var_( $varName ), $this->val( $Value ) );
+  }
+
+  public function varNe( $varName, $Value )
+  {
+    return $this->ne( $this->var_( $varName ), $this->val( $Value ) );
+  }
 }

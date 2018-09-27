@@ -64,4 +64,9 @@ class DbDialect implements \Qck\Sql\Interfaces\DbDialect
   {
     return "or";
   }
+
+  public function createPdo( $DbName )
+  {
+    return null;
+  }
 }
