@@ -69,4 +69,9 @@ class DbDialect implements \Qck\Sql\Interfaces\DbDialect
   {
     return null;
   }
+
+  public function getForeignKeyConstraint( $ColName, $RefTableName, $RefColName )
+  {
+    return sprintf( "FOREIGN KEY(%s) REFERENCES %s(%s)", $ColName, $RefTableName, $RefColName );
+  }
 }
