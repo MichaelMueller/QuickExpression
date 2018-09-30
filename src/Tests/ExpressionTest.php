@@ -23,8 +23,8 @@ class ExpressionTest implements \Qck\Interfaces\Test
 
   public function exec( \Qck\Interfaces\ServiceRepo $ServiceRepo )
   {
-    /* @var $e \Qck\Expression\Interfaces\ExpressionFactory */
-    $e = $ServiceRepo->get( \Qck\Expression\Interfaces\ExpressionFactory::class );
+    /* @var $Expr \Qck\Expression\Interfaces\ExpressionFactory */
+    $Expr = $ServiceRepo->get( \Qck\Expression\Interfaces\ExpressionFactory::class );
 
     $Data = [];
     $Data[ "Name" ] = "Michi";
@@ -35,18 +35,11 @@ class ExpressionTest implements \Qck\Interfaces\Test
 
     $TargetSql = "(strlen ( Name )  >= ? and Pw = PwConfirm and strlen ( Pw )  >= ? and Age >= ?)";
     // validation expression: strlen(Name) > 4 && strlen(Pw) > 3 && Pw == PwConfirm && Age >= 18
-    $NameVar = $e->var_( "Name" );
-    $NameValidator = $e->ge( $e->strlen( $NameVar ), $e->val( 4 ) );
-
-    $PwVar = $e->var_( "Pw" );
-    $PwValidator = $e->ge( $e->strlen( $PwVar ), $e->val( 3 ) );
-
-    $PwEqualsValidator = $e->eq( $PwVar, $e->var_( "PwConfirm", true ) );
-
-    $AgeVar = $e->var_( "Age" );
-    $AgeValidator = $e->ge( $AgeVar, $e->val( 18 ) );
-
-    $CompleteValidator = $e->and_( true )->add( $NameValidator )->add( $PwEqualsValidator )->add( $PwValidator )->add( $AgeValidator );
+    $NameValidator = $Expr->check( $Expr->createStrlen( "Name" ) )->isGreater( 4 );
+    $PwValidator = $Expr->check( $Expr->createStrlen( "Pw" ) )->isGreater( 3 );
+    $PwEqualsValidator = $Expr->check( "Pw" )->isEquals( "PwConfirm", true );
+    $AgeValidator = $Expr->check( "Age" )->isGreater( 18 );
+    $CompleteValidator = $Expr->createAnd( [ $NameValidator, $PwEqualsValidator, $PwValidator, $AgeValidator ], true );
 
     if ( !$CompleteValidator->evaluate( $Data ) )
       throw new \Exception( "CompleteValidator failed" );

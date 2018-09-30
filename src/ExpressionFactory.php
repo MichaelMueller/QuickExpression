@@ -113,6 +113,80 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
   public function varEqVar( $varName, $var2Name )
   {
     return $this->eq( $this->var_( $varName ), $this->var_( $var2Name ) );
-    
   }
+
+  public function check( $VarName, $FilterOut )
+  {
+    $this->CurrentVarName = is_scalar( $VarName ) ? new Var_( $VarName, $FilterOut ) : $VarName;
+    return $this;
+  }
+
+  public function createAnd( array $Expressions = array (), $EvaluateAll = false )
+  {
+    return new And_( $Expressions, $EvaluateAll );
+  }
+
+  public function createJoin( $Tables )
+  {
+    $And = $this->createAnd();
+    /* @var $Tables \Qck\Sql\Interfaces\Table[] */
+    foreach ( $Tables as $Table )
+    {
+      $ForeignKeyColumns = $Table->getForeignKeyCols();
+      foreach ( $ForeignKeyColumns as $ForeignKeyColumn )
+      {
+        $RefTable = $ForeignKeyColumn->getRefTable();
+        if ( in_array( $RefTable, $Tables ) )
+        {
+          $ForeignKeyName = $ForeignKeyColumn->getName();
+          $RefTablePrimaryKeyName = $RefTable->getPrimaryKeyColumn()->getName();
+          $And->add( $this->check( $ForeignKeyName )->isEquals( $RefTablePrimaryKeyName, true ) );
+        }
+      }
+    }
+    return $And;
+  }
+
+  public function createOr( array $Expressions = array () )
+  {
+    return new And_( $Expressions );
+  }
+
+  public function createStrlen( $VarName, $FilterOut = false )
+  {
+    return new Strlen( new Var_( $VarName, $FilterOut ) );
+  }
+
+  public function isEquals( $Value, $ValueIsVarName = false, $FilterOut = false )
+  {
+    return new Equals( $this->CurrentVarName, $ValueIsVarName ? new Var_( $Value, $FilterOut ) : new Value( $Value ) );
+  }
+
+  public function isGreater( $Value, $ValueIsVarName = false, $FilterOut = false )
+  {
+    return new Greater( $this->CurrentVarName, $ValueIsVarName ? new Var_( $Value, $FilterOut ) : new Value( $Value ) );
+  }
+
+  public function isGreaterOrEquals( $Value, $ValueIsVarName = false, $FilterOut = false )
+  {
+    return new GreaterEquals( $this->CurrentVarName, $ValueIsVarName ? new Var_( $Value, $FilterOut ) : new Value( $Value ) );
+  }
+
+  public function isLess( $Value, $ValueIsVarName = false, $FilterOut = false )
+  {
+    return new Less( $this->CurrentVarName, $ValueIsVarName ? new Var_( $Value, $FilterOut ) : new Value( $Value ) );
+  }
+
+  public function isLessOrEquals( $Value, $ValueIsVarName = false, $FilterOut = false )
+  {
+    return new LessEquals( $this->CurrentVarName, $ValueIsVarName ? new Var_( $Value, $FilterOut ) : new Value( $Value ) );
+  }
+
+  public function isNotEquals( $Value, $ValueIsVarName = false, $FilterOut = false )
+  {
+    return new NotEquals( $this->CurrentVarName, $ValueIsVarName ? new Var_( $Value, $FilterOut ) : new Value( $Value ) );
+  }
+
+  protected $CurrentVarName;
+
 }

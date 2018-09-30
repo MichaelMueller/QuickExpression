@@ -9,8 +9,9 @@ namespace Qck\Expression;
 class And_ extends BooleanChain
 {
 
-  function __construct( $EvaluateAll = false )
+  function __construct( array $Expressions = array (), $EvaluateAll = false )
   {
+    $this->Expressions = $Expressions;
     $this->EvaluateAll = $EvaluateAll;
   }
 

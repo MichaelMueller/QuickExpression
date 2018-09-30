@@ -16,7 +16,7 @@ class Or_ extends BooleanChain
 
   function __construct( array $Expressions = [] )
   {
-    parent::__construct( $Expressions );
+    $this->Expressions = $Expressions;
   }
 
   public function evaluateProxy( array $Data, &$FilteredArray = [],
