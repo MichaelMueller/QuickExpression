@@ -115,7 +115,7 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
     return $this->eq( $this->var_( $varName ), $this->var_( $var2Name ) );
   }
 
-  public function check( $VarName, $FilterOut )
+  public function check( $VarName, $FilterOut = false )
   {
     $this->CurrentVarName = is_scalar( $VarName ) ? new Var_( $VarName, $FilterOut ) : $VarName;
     return $this;
@@ -133,14 +133,16 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
     foreach ( $Tables as $Table )
     {
       $ForeignKeyColumns = $Table->getForeignKeyCols();
+      $TableName = $Table->getName();
       foreach ( $ForeignKeyColumns as $ForeignKeyColumn )
       {
         $RefTable = $ForeignKeyColumn->getRefTable();
         if ( in_array( $RefTable, $Tables ) )
         {
           $ForeignKeyName = $ForeignKeyColumn->getName();
+          $RefTableName = $RefTable->getName();
           $RefTablePrimaryKeyName = $RefTable->getPrimaryKeyColumn()->getName();
-          $And->add( $this->check( $ForeignKeyName )->isEquals( $RefTablePrimaryKeyName, true ) );
+          $And->add( $this->check( $TableName . "." . $ForeignKeyName )->isEquals( $RefTableName . "." . $RefTablePrimaryKeyName, true ) );
         }
       }
     }

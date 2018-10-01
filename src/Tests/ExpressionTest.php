@@ -35,10 +35,10 @@ class ExpressionTest implements \Qck\Interfaces\Test
 
     $TargetSql = "(strlen ( Name )  >= ? and Pw = PwConfirm and strlen ( Pw )  >= ? and Age >= ?)";
     // validation expression: strlen(Name) > 4 && strlen(Pw) > 3 && Pw == PwConfirm && Age >= 18
-    $NameValidator = $Expr->check( $Expr->createStrlen( "Name" ) )->isGreater( 4 );
-    $PwValidator = $Expr->check( $Expr->createStrlen( "Pw" ) )->isGreater( 3 );
-    $PwEqualsValidator = $Expr->check( "Pw" )->isEquals( "PwConfirm", true );
-    $AgeValidator = $Expr->check( "Age" )->isGreater( 18 );
+    $NameValidator = $Expr->check( $Expr->createStrlen( "Name" ) )->isGreaterOrEquals( 4 );
+    $PwValidator = $Expr->check( $Expr->createStrlen( "Pw" ) )->isGreaterOrEquals( 3 );
+    $PwEqualsValidator = $Expr->check( "Pw" )->isEquals( "PwConfirm", true, true );
+    $AgeValidator = $Expr->check( "Age" )->isGreaterOrEquals( 18 );
     $CompleteValidator = $Expr->createAnd( [ $NameValidator, $PwEqualsValidator, $PwValidator, $AgeValidator ], true );
 
     if ( !$CompleteValidator->evaluate( $Data ) )
