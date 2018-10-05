@@ -18,7 +18,7 @@
       "Qck\\Expression\\": "src"
     },
     "files": [
-      "src/autoload.php"
+      "src/quickexpression_autoload.php"
     ]
   },
   "minimum-stability": "dev",
