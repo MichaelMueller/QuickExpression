@@ -2,7 +2,7 @@
 
 namespace Qck\Expression\Tests;
 
-class DbDialect implements \Qck\Sql\Interfaces\DbDialect
+class DbDialect implements \Qck\Interfaces\Sql\DbDialect
 {
 
   public function getAutoincrementAttribute()

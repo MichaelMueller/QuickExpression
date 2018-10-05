@@ -15,7 +15,7 @@ class Regexp extends Comparison
     parent::__construct( $Left, $Right );
   }
 
-  public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
+  public function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary )
   {
     return $Dictionary->getRegExpOperator();
   }

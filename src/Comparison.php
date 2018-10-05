@@ -2,7 +2,7 @@
 
 namespace Qck\Expression;
 
-use Qck\Expression\Interfaces\ValueExpression;
+use Qck\Interfaces\Expressions\ValueExpression;
 
 /**
  *
@@ -13,7 +13,7 @@ abstract class Comparison extends BooleanExpression implements Interfaces\Compar
 
   abstract function getOperatorString();
 
-  abstract function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary );
+  abstract function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary );
 
   function __construct( ValueExpression $Left = null, ValueExpression $Right = null )
   {
@@ -31,7 +31,7 @@ abstract class Comparison extends BooleanExpression implements Interfaces\Compar
     return $this->Right;
   }
 
-  public function toSql( \Qck\Sql\Interfaces\DbDialect $SqlDbDialect,
+  public function toSql( \Qck\Interfaces\Sql\DbDialect $SqlDbDialect,
                          array &$Params = array () )
   {
     return $this->Left->toSql( $SqlDbDialect, $Params ) . " " . $this->getOperator( $SqlDbDialect ) . " " . $this->Right->toSql( $SqlDbDialect, $Params );

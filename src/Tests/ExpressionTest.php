@@ -23,8 +23,8 @@ class ExpressionTest implements \Qck\Interfaces\Test
 
   public function exec( \Qck\Interfaces\ServiceRepo $ServiceRepo )
   {
-    /* @var $Expr \Qck\Expression\Interfaces\ExpressionFactory */
-    $Expr = $ServiceRepo->get( \Qck\Expression\Interfaces\ExpressionFactory::class );
+    /* @var $Expr \Qck\Interfaces\Expressions\ExpressionFactory */
+    $Expr = $ServiceRepo->get( \Qck\Interfaces\Expressions\ExpressionFactory::class );
 
     $Data = [];
     $Data[ "Name" ] = "Michi";

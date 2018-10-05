@@ -30,12 +30,12 @@ abstract class BooleanExpression implements Interfaces\BooleanExpression
     return $IsValid ? $FilteredArray : false;
   }
 
-  function filterRequest( \Qck\App\Interfaces\Request $Request, &$FailedExpressions = [] )
+  function filterRequest( \Qck\Interfaces\Request $Request, &$FailedExpressions = [] )
   {
     return $this->filterVar( $Request->getParams(), $FailedExpressions );
   }
 
-  function evaluateRequest( \Qck\App\Interfaces\Request $Request,
+  function evaluateRequest( \Qck\Interfaces\Request $Request,
                             &$FilteredArray = array (), &$FailedExpressions = array () )
   {
     return $this->evaluate( $Request->getParams(), $FilteredArray, $FailedExpressions );

@@ -19,7 +19,7 @@ class BooleanValueExpression extends BooleanExpression
     return boolval( $this->Value );
   }
 
-  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
+  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     return boolval( $this->Value ) == true ? $Dictionary->getTrueLiteral() : $Dictionary->getFalseLiteral();

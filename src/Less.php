@@ -21,7 +21,7 @@ class Less extends Comparison
     return $this->Left->getValue( $Data, $FilteredArray ) < $this->Right->getValue( $Data, $FilteredArray );
   }
 
-  public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
+  public function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary )
   {
     return "<";
   }

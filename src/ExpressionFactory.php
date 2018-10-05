@@ -2,14 +2,14 @@
 
 namespace Qck\Expression;
 
-use Qck\Expression\Interfaces\ValueExpression;
-use Qck\Expression\Interfaces\BooleanExpression;
+use Qck\Interfaces\Expressions\ValueExpression;
+use Qck\Interfaces\Expressions\BooleanExpression;
 
 /**
  *
  * @author muellerm
  */
-class ExpressionFactory implements Interfaces\ExpressionFactory
+class ExpressionFactory implements \Qck\Interfaces\ExpressionsFactory
 {
 
   function and_( $EvaluateAll = false )
@@ -129,7 +129,7 @@ class ExpressionFactory implements Interfaces\ExpressionFactory
   public function createJoin( $Tables )
   {
     $And = $this->createAnd();
-    /* @var $Tables \Qck\Sql\Interfaces\Table[] */
+    /* @var $Tables \Qck\Interfaces\Sql\Table[] */
     foreach ( $Tables as $Table )
     {
       $ForeignKeyColumns = $Table->getForeignKeyCols();

@@ -14,7 +14,7 @@ class Strlen extends SingleParamFunction
     parent::__construct( $Param );
   }
 
-  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
+  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     return $Dictionary->getStrlenFunctionName() . " ( " . $this->Param->toSql( $Dictionary, $Params ) . " ) ";

@@ -29,7 +29,7 @@ class Or_ extends BooleanChain
     return $eval;
   }
 
-  public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
+  public function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary )
   {
     return "or";
   }

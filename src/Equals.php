@@ -23,7 +23,7 @@ class Equals extends Comparison
     return $eval;
   }
 
-  public function getOperator( \Qck\Sql\Interfaces\DbDialect $Dictionary )
+  public function getOperator( \Qck\Interfaces\Sql\DbDialect $Dictionary )
   {
     return "=";
   }

@@ -20,7 +20,7 @@ class Var_ implements Interfaces\Var_
     return $this->Name;
   }
 
-  public function toSql( \Qck\Sql\Interfaces\DbDialect $Dictionary,
+  public function toSql( \Qck\Interfaces\Sql\DbDialect $Dictionary,
                          array &$Params = array () )
   {
     return $this->Name;
