@@ -16,10 +16,7 @@
   "autoload": {
     "psr-4": {
       "Qck\\Expression\\": "src"
-    },
-    "files": [
-      "src/quickexpression_autoload.php"
-    ]
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
